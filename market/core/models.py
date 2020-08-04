@@ -30,7 +30,8 @@ class ProductDescription(models.Model):
 class Discount(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.FloatField()
-    expiration_date = models.DateTimeField()
+    init_date = models.DateTimeField()
+    duration = models.IntegerField()
 
 
 class Comment(models.Model):
@@ -38,6 +39,7 @@ class Comment(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     content = models.CharField(max_length=100, blank=Fasle)
     customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL)
+    created_date = models.DateTimeField(auto_now_add=True)
 
 
 class Orders(models.Model):
