@@ -37,13 +37,13 @@ class Discount(models.Model):
 class Comment(models.Model):
     subject = models.CharField(max_length=15, blank=False)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    content = models.CharField(max_length=100, blank=Fasle)
-    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL)
+    content = models.CharField(max_length=100, blank=False)
+    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
 
 class Orders(models.Model):
-    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL)
+    customer_id = models.ForeignKey(Customer, on_delete=models.PROTECT)
     order_date = models.DateTimeField(auto_now_add=True)
     total_price = models.FloatField()
     discount_amount = models.FloatField()
@@ -64,6 +64,6 @@ class OrderList(models.Model):
 class QA(models.Model):
     subject = models.CharField(max_length=15, blank=False)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    content = models.CharField(max_length=100, blank=Fasle)
-    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL)
+    content = models.CharField(max_length=100, blank=False)
+    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
 
