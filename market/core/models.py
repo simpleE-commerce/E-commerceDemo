@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Customer(User):
     phone_number = models.CharField(max_length=13, blank=False)
     address = models.CharField(max_length=50, blank=False)
+    national_ID = models.CharField(max_length=10, blank=False)
 
 
 class Product(models.Model):
@@ -37,6 +38,7 @@ class ProductDescription(models.Model):
 
 class Discount(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    discount_code = models.CharField(blank=False, null=False)
     amount = models.FloatField()
     init_date = models.DateTimeField()
     duration = models.IntegerField()
