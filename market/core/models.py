@@ -13,6 +13,7 @@ class Product(models.Model):
     price = models.FloatField()
     available = models.BooleanField()
     inventory_count = models.IntegerField()
+    description = models.TextField(blank=False)
 
 
 class Category(models.Model):
@@ -28,12 +29,6 @@ class ProductDetails(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     feature_name = models.CharField(max_length=20, blank=False)
     feature_value = models.CharField(max_length=25, blank=False)
-
-
-class ProductDescription(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    title = models.CharField(max_length=20, blank=False)
-    description = models.CharField(max_length=200, blank=False)
 
 
 class Discount(models.Model):
