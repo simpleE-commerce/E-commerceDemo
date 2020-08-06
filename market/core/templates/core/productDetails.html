@@ -1,35 +1,10 @@
 {% extends "core/index.html" %}
 {% load static %}
 {% block title %}product name{% endblock %}
-{% block productDetailsBlock %}
+{% block body_content %}
 <link rel="stylesheet" type="text/css" href="{% static 'core/css/productDetails.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/main.css' %}">
-
-<!-- 
-<ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
-</ul>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-4" style="background-color: brown;height: 100px;">
-        </div>
-        <div class="col-8" style="background-color: blueviolet;height: 100px;">
-        </div>
-    </div>
-</div> -->
  
 <div class="wrapper">
          <nav>
@@ -71,19 +46,6 @@
         </nav>
     
         <div class="content">
- 
-             <!-- <section class="left">
-                 <div class="swiper-container galleryMain ">
-                     <div class="swiper-wrapper">
-                     </div>
-                 </div>
-
-                 <div class="sliderNavigation">
-                     <div class="swiper-button-prev"></div>
-                     <div class="swiper-pagination"></div>
-                     <div class="swiper-button-next"></div>
-                 </div>
-             </section> -->
             <div class="container">
                 <section id="default" class="padding-top0">
                 <div class="row">
@@ -165,12 +127,6 @@
                          <div class="swiper-wrapper">
                          </div>
                      </div>
-                     
-                     <!-- <div class="btnContainer">
-                         <button class="btn add">
-                             <img src="https://rafaelalucas.com/dailyui/12/assets/shopping-cart-w.svg" alt="">
-                             add to cart</button>
-                     </div> -->
 
                     <div class="container-login100-form-btn p-t-31">
                         <div class="wrap-login100-form-btn btnContainer">
@@ -179,11 +135,7 @@
                                 <img src="https://rafaelalucas.com/dailyui/12/assets/shopping-cart-w.svg" alt="">
                                 add to cart
                             </button>
-                            <!-- <div class="btnContainer">
-                                <button class="btn add">
-                                    <img src="https://rafaelalucas.com/dailyui/12/assets/shopping-cart-w.svg" alt="">
-                                    add to cart</button>
-                            </div> -->
+                        
                         </div>
                     </div>
  

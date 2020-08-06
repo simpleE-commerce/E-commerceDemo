@@ -17,7 +17,7 @@ class Product(models.Model):
     price = models.FloatField()
     available = models.BooleanField()
     inventory_count = models.IntegerField()
-    description = models.TextField(blank=False)
+    description = models.TextField(blank=False, default="")
 
 
 class FavoriteList(models.Model):
@@ -53,11 +53,12 @@ class ProductDetails(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     feature_name = models.CharField(max_length=20, blank=False)
     feature_value = models.CharField(max_length=25, blank=False)
+    description = models.TextField()
 
 
 class Discount(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    discount_code = models.CharField(blank=False, null=False)
+    discount_code = models.CharField(max_length=10, blank=False, null=False)
     amount = models.FloatField()
     init_date = models.DateTimeField()
     duration = models.IntegerField()
