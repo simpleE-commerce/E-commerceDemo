@@ -1,5 +1,5 @@
 {% extends "core/index.html" %}
-<!-- {% load static %} -->
+{% load static %}
 {% block title %}Login/Register{% endblock %}
 {% block SigninSignUp %}
 <meta charset="UTF-8">
@@ -32,8 +32,8 @@
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
             <form class="login100-form validate-form">
                 <ul class="tab-group login100-form-title p-b-49">
-                    <li class="tab active"><a href="#login">Log In</a></li>
-                    <li class="tab"><a href="#signup">Sign Up</a></li>
+                    <li class="tab active"><a class="activeTab" href="#login">Log In</a></li>
+                    <li class="tab"><a  class="activeTab" href="#signup">Sign Up</a></li>
                 </ul>
 
                 <div class="tab-content">
