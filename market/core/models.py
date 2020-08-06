@@ -9,10 +9,18 @@ class Customer(User):
 
 class Product(models.Model):
     product_name = models.CharField(max_length=30, blank=False)
-    category = models.CharField(max_length=15, blank=False)
     price = models.FloatField()
     available = models.BooleanField()
     inventory_count = models.IntegerField()
+
+
+class Category(models.Model):
+    category_title = models.CharField(max_length=15, blank=False)
+
+
+class ProductCategory(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
 class ProductDetails(models.Model):
@@ -35,10 +43,10 @@ class Discount(models.Model):
 
 
 class Comment(models.Model):
-    subject = models.CharField(max_length=15, blank=False)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    content = models.CharField(max_length=100, blank=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    subject = models.CharField(max_length=15, blank=False)
+    content = models.CharField(max_length=100, blank=False)
     created_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -66,4 +74,3 @@ class QA(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     content = models.CharField(max_length=100, blank=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-

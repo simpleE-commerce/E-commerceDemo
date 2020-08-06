@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     # for crispy
     'crispy_forms',
     # for registration
-    'register'
+    'register',
+    # market products
+    'product'
+
 ]
 
 MIDDLEWARE = [

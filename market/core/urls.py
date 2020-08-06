@@ -3,6 +3,5 @@ from core.views import *
 
 app_name = 'core'
 urlpatterns = [
-    # path('login/', LoginView.as_view(), name='login'),
-    # path('product/', RegisterationView.as_view(), name='register')
+    path('', MainClassView.as_view(), name='index')
 ]

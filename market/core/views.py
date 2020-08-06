@@ -1,13 +1,9 @@
 from django.shortcuts import render
-from django.views import View
+from django.views import generic
+
+
 # Create your views here.
 
 
-# class LoginView(View):
-#     def get(self, request, *args, **kwargs):
-#         return render(request, 'core/login.html')
-#
-#
-# class RegisterationView(View):
-#     def get(self, request, *args, **kwargs):
-#         return render(request, 'core/productDetails.html')
+class MainClassView(generic.TemplateView):
+    template_name = 'core/main.html'
