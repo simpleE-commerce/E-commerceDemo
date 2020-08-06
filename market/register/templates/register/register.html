@@ -1,0 +1,32 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css_links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'register/style.css' %}">
+{% endblock %}
+
+{% block body_navbar %}
+{% endblock %}
+
+{% block body_content %}
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 login-form-2">
+                <h3>{% block form_title %}{% endblock %}</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    {% block form_options %}
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login"/>
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+                        </div>
+                    {% endblock %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'register/register.html' %}
+
+{% block form_title %}SignUp form{% endblock %}
+
+{% block form_options %}
+    <div class="form-group">
+        <a href="{% url 'login' %}" class="ForgetPwd">Already have an account?</a>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btnSubmit" value="SignUp"/>
+    </div>
+{% endblock %}

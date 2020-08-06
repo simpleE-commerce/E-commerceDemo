@@ -1,0 +1,24 @@
+{# default name of the file which is used by Django login system #}
+{% extends 'register/register.html' %}
+{% load static %}
+
+{% block body_navbar %}
+{% endblock %}
+
+{% block css_links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'register/style.css' %}">
+{% endblock %}
+
+{% block form_title %}Log in form{% endblock %}
+
+{% block form_options %}
+    <div class="form-group">
+        <a href="#" class="ForgetPwd">Forget Password?</a>
+    </div>
+    <div class="form-group">
+        <a href="{% url 'register_form' %}" class="ForgetPwd">Don't have an account yet?</a>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btnSubmit" value="Login"/>
+    </div>
+{% endblock %}
