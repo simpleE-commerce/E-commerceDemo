@@ -2,3 +2,4 @@ django>=2.2,<2.3
 djangorestframework>=3.10,<3.11
 django-crispy-forms
 Pillow
+psycopg2

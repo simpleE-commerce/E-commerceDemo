@@ -140,3 +140,4 @@ class TicketThread(models.Model):
     answer_content = models.TextField()
     question_content = models.TextField()
     created_ad = models.DateTimeField(auto_now_add=True)
+

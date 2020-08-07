@@ -18,6 +18,8 @@
         crossorigin="anonymous"
     >
 
+    <link rel="stylesheet" href="{% static 'core/css/main.css' %}">
+
     <!-- FontAwesome icons -->
     <script src="https://use.fontawesome.com/e8f4dc5178.js"></script>
 
@@ -58,7 +60,14 @@
                     </a>
                   </li>
                 </ul>
+
                 <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li>
+                        <form action="product/search/" method="get">
+                            {% csrf_token %}
+                            <input type="text" name="term" size="30"> <input type="submit" value="Search">
+                        </form>
+                    </li>
                   <li class="nav-item avatar dropdown">
                     <a
                         class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
