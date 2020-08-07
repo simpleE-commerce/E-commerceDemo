@@ -97,7 +97,7 @@ class Orders(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     total_price = models.FloatField()
     discount_amount = models.FloatField()
-    status = models.IntegerField(choices=order_status)
+    status = models.IntegerField(choices=order_status, default=1)
 
 
 class Shipments(models.Model):
@@ -109,8 +109,14 @@ class OrderList(models.Model):
     order_id = models.ForeignKey(Orders, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.FloatField()
-    number = models.IntegerField()
-    discount = models.FloatField()
+    quantity = models.IntegerField()
+
+
+class Cart(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    price = models.FloatField()
+    quantity = models.IntegerField()
 
 
 class Payments(models.Model):
