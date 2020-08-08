@@ -6,11 +6,14 @@
             {% for product in products %}
                 <div class="col-md-4 col-sm-6">
                     <div class="card" style="width: 18rem;">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="{{ product.cover_image.url }}" class="card-img-top" alt="..." style="max-height: 200px; width: auto;">
                       <div class="card-body">
-                        <h5 class="card-title">{{ product.product_name}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">{{ product.name}}</h5>
+                        <p>Available: {{ product.available }}</p>
+                        <p>inventory count: {{ product.inventory_count }}</p>
+                        <p>price: {{ product.price }}</p>
+                        <p class="card-text">{{ product.description | truncatewords:40 }}</p>
+                        <a href="{% url 'product:product_detail-page' product.id %}" class="btn btn-primary">Details</a>
                       </div>
                     </div>
                 </div>

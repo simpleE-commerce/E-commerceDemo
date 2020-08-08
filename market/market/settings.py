@@ -128,6 +128,10 @@ STATICFILES_FINDERS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
 
+# User Uploaded Files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Crispy
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 

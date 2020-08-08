@@ -1,18 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
-class Customer(User):
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     phone_number = models.CharField(max_length=13, blank=False)
     address = models.CharField(max_length=50, blank=False)
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=30, blank=False)
+    name = models.CharField(max_length=30, blank=False)
+    cover_image = models.ImageField(upload_to='product/cover_image', null=True, blank=False)
     price = models.FloatField()
     available = models.BooleanField()
     inventory_count = models.IntegerField()
-    description = models.TextField(blank=False)
+    description = models.TextField(blank=False, default='')
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
@@ -24,7 +30,7 @@ class ProductCategory(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
-class ProductDetails(models.Model):
+class ProductFeatures(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     feature_name = models.CharField(max_length=20, blank=False)
     feature_value = models.CharField(max_length=25, blank=False)
@@ -33,8 +39,9 @@ class ProductDetails(models.Model):
 class Discount(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.FloatField()
-    init_date = models.DateTimeField()
-    duration = models.IntegerField()
+    init_date = models.DateTimeField(default=timezone.now)
+    until_date = models.DateTimeField(blank=False, default=timezone.now, null=True)
+    # duration = models.IntegerField()
 
 
 class Comment(models.Model):
