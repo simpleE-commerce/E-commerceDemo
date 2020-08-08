@@ -19,3 +19,7 @@ class SearchView(generic.TemplateView):
         products = Product.objects.filter(product_name__icontains=request.GET['term'])
         products
         return render(request, self.template_name, {"products": products})
+
+
+class ProductDetails(generic.TemplateView):
+    template_name = 'product/productDetails.html'

@@ -50,11 +50,11 @@ a {
   -moz-transition: all 0.4s;
 }
 
-a:focus {
+.activeTab:focus {
 	outline: none !important;
 } 
 
-a:hover {
+.activeTab:hover {
 	text-decoration: none;
   color: #a64bf4;
   border-bottom: 2px solid #1ab188;
@@ -503,7 +503,7 @@ iframe {
   transition: 0.5s ease;
 }
 
-.tab-group .active a {
+.tab-group .active .activeTab {
   border-bottom: 2px solid #1ab188;
   color: #a64bf4;
 }
@@ -552,3 +552,30 @@ label.highlight {
   margin: 0;
 }
 
+
+
+
+/* Styles for wrapping the search box */
+
+.main {
+  width: 50%;
+  margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
