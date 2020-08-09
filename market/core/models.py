@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Person(User):
@@ -13,7 +14,8 @@ class Customer(Person):
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=30, blank=False)
+    name = models.CharField(max_length=30, blank=False)
+    cover_image = models.ImageField(upload_to='product/cover_image', null=True, blank=False)
     price = models.FloatField()
     available = models.BooleanField()
     inventory_count = models.IntegerField()
@@ -28,6 +30,10 @@ class FavoriteList(models.Model):
 class ProductImage(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField()
+    description = models.TextField(blank=False, default='')
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
@@ -60,8 +66,9 @@ class Discount(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     discount_code = models.CharField(max_length=10, blank=False, null=False)
     amount = models.FloatField()
-    init_date = models.DateTimeField()
-    duration = models.IntegerField()
+    init_date = models.DateTimeField(default=timezone.now)
+    until_date = models.DateTimeField(blank=False, default=timezone.now, null=True)
+    # duration = models.IntegerField()
 
 
 class Comment(models.Model):

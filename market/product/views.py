@@ -23,3 +23,11 @@ class SearchView(generic.TemplateView):
 
 class ProductDetails(generic.TemplateView):
     template_name = 'product/single.html'
+
+
+class ProductDetailClassView(generic.DetailView):
+    model = Product
+    template_name = 'product/product_detail.html'
+
+    # def get_queryset(self):
+    #     return Product.objects.filter(id=)
