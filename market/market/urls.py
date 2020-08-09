@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('core.urls')),
     # registration urls
     path('register/', include('register.urls')),
-    path('product/', include('product.urls'))
+    path('product/', include('product.urls')),
+    path('cart/', include('cart.urls'))
 ]

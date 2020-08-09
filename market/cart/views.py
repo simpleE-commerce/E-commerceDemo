@@ -3,22 +3,29 @@ from django.views import generic, View
 from core.models import *
 from django.core.exceptions import ObjectDoesNotExist
 
-class AddCartView(View):
-
+class AddCartView(generic.TemplateView):
+    template_name = 'product/checkout.html'
     def post(self, request, *args, **kwargs):
+        print("in")
         try:
-            product_id = request.POST['product_id']
-            customer_id = request.user.id
-            quantity = request.POST['quantity']
+            print("First********************************")
+            print("id", request.user.id, type(request.user.id))
+            product_id = Product.objects.get(id=request.POST['product_id'])
+            print("pid", product_id)
+            customer_id = Customer.objects.get(id=request.user.id)
+            quantity = int(request.POST['quantity'])
             price = Product.objects.get(id=product_id).price
             items = Cart(product_id=product_id, customer_id=customer_id, price=price, quantity=quantity)
             items.save()
+            print("third********************************")
+            return render(request, self.template_name)
         except ObjectDoesNotExist as e:
             print(e)
+            return render(request, self.template_name, {})
 
 
 class CartView(generic.ListView):
-    template_name = 'cart/cartlist.html'
+    template_name = 'product/checkout.html'
     model = Cart
 
     def post(self, request, *args, **kwargs):
@@ -45,7 +52,7 @@ class CheckOutView(View):
                                    price=product_price,
                                    quantity=request.POST['quantity'])
             order_list.save()
-            if total_price - discount_amount == request.POST['amount']
+            if total_price - discount_amount == request.POST['amount']:
                 payment = Payments(order_id=order.id,
                                     amount=request.POST['amount'],
                                     status=2)

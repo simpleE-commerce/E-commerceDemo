@@ -16,10 +16,10 @@ class SearchView(generic.TemplateView):
     
     def get(self, request, *args, **kwargs):
         print(request.GET['term'])
-        products = Product.objects.filter(product_name__icontains=request.GET['term'])
+        products = Product.objects.filter(product_name=request.GET['term'])
         products
         return render(request, self.template_name, {"products": products})
 
 
 class ProductDetails(generic.TemplateView):
-    template_name = 'product/productDetails.html'
+    template_name = 'product/single.html'
