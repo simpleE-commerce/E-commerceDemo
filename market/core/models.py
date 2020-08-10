@@ -3,23 +3,27 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-class Person(User):
-    phone_number = models.CharField(max_length=13, blank=False)
-    address = models.CharField(max_length=50, blank=False)
-    national_ID = models.CharField(max_length=10, blank=False)
+class Person(models.Model):
+    user_info = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    phone_number = models.CharField(max_length=13, blank=False, null=True)
+    address = models.CharField(max_length=50, blank=False, null=True)
+    national_ID = models.CharField(max_length=10, blank=False, null=True)
 
 
-class Customer(Person):
-    pass
+class Customer(models.Model):
+    person_info = models.OneToOneField(Person, on_delete=models.CASCADE)
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=30, blank=False)
+    product_name = models.CharField(max_length=30, blank=False)
     cover_image = models.ImageField(upload_to='product/cover_image', null=True, blank=False)
     price = models.FloatField()
     available = models.BooleanField()
     inventory_count = models.IntegerField()
     description = models.TextField(blank=False, default="")
+
+    def __str__(self):
+        return self.product_name
 
 
 class FavoriteList(models.Model):
@@ -29,11 +33,8 @@ class FavoriteList(models.Model):
 
 class ProductImage(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='product', null=False)
     description = models.TextField(blank=False, default='')
-
-    def __str__(self):
-        return self.name
 
 
 class Category(models.Model):
@@ -46,6 +47,7 @@ class ProductCategory(models.Model):
 
 
 class Seller(models.Model):
+    seller_info = models.OneToOneField(Person, on_delete=models.CASCADE)
     deposit_amount = models.FloatField()
     rank = models.IntegerField()
 
