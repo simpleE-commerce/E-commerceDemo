@@ -8,10 +8,9 @@
 			<div class="container">
 				<ul class="w3_short">
 					<li>
-						<a href="index.html">Home</a>
+						<a href="{% url 'core:index' %}">Home</a>
 						<i>|</i>
 					</li>
-					<li>Single Product 1</li>
 				</ul>
 			</div>
 		</div>
@@ -49,7 +48,7 @@
 					<p class="mb-3">
 						<span class="item_price">{{ product.price }}</span>
 						<!-- <del class="mx-2 font-weight-light">$280.00</del> -->
-						<label>Free delivery</label>
+						<!-- <label>Free delivery</label> -->
 					</p>
 					<div class="single-infoagile">
 						<ul>
@@ -72,7 +71,7 @@
 							<i class="far fa-hand-point-right mr-2"></i>
 							<label>1 Year</label>Manufacturer Warranty</p>
 						<ul>
-							{% for feature in product.productfeatures_set.all %}
+							{% for feature in description %}
 								<li class="mb-1">{{ feature.feature_name }}: {{ feature.feature_value }}</li>
 							{% endfor %}
 						</ul>

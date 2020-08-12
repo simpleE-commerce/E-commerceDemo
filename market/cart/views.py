@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic, View
 from core.models import *
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 
 class AddCartView(generic.ListView):
     template_name = 'product/checkout.html'
@@ -10,13 +11,9 @@ class AddCartView(generic.ListView):
     def post(self, request, *args, **kwargs):
         try:
             product = Product.objects.get(id=request.POST['product_id'])
-            print(product,"**************************************")
             user = User.objects.get(id=request.user.id)
-            print(user, "###########################################33")
             person = Person.objects.get(user_info=user)
-            print(person, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
             customer = Customer.objects.get(person_info=person)
-            print(customer, "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
             quantity = int(request.POST['quantity'])
             try:
                 item_exists = Cart.objects.get(product_id=product, customer_id=customer)
@@ -25,47 +22,63 @@ class AddCartView(generic.ListView):
             except ObjectDoesNotExist as e:
                 items = Cart(product_id=product, customer_id=customer, price=product.price, quantity=quantity)
                 items.save()
-            print("qu", quantity)
             user_cart = Cart.objects.filter(customer_id=customer)
-            print('c', user_cart)
             cart_list = []
             for item in user_cart:
-                # temp_list = [item.product_id, item.quantity]
                 cart_list.append(item.product_id)
-            print(cart_list)
-            return render(request, self.template_name, {"cartList": cart_list})
+            # return render(request, self.template_name, {"cartList": cart_list})
+            return redirect('/cart/', request)
         except ObjectDoesNotExist as e:
-            print(e)
             return render(request, self.template_name, {"None": 1})
 
 
 class CartView(generic.ListView):
-    template_name = 'product/checkout.html'
+    template_name = 'product/Cart.html'
     model = Cart
 
-    def post(self, request, *args, **kwargs):
+
+    def get(self, request, *args, **kwargs):
+        '''
+        Get method is used for redirect request from Add to cart View.
+        '''
         try:
             user = User.objects.get(id=request.user.id)
-            print(user, "###########################################33")
             person = Person.objects.get(user_info=user)
-            print(person, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
             customer = Customer.objects.get(person_info=person)
-            print(customer, "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
             user_cart = Cart.objects.filter(customer_id=customer)
-            print('c', user_cart)
-            cart_list = []
-            for item in user_cart:
-                # temp_list = [item.product_id, item.quantity]
-                cart_list.append(item.product_id)
-            print(cart_list)
             return render(request, self.template_name, {"cartList": user_cart})
         except ObjectDoesNotExist as e:
             print(e)
             return render(request, self.template_name, {"None": 1})
 
+    def post(self, request, *args, **kwargs):
+        try:
+            user = User.objects.get(id=request.user.id)
+            person = Person.objects.get(user_info=user)
+            customer = Customer.objects.get(person_info=person)
+            user_cart = Cart.objects.filter(customer_id=customer)
+            return render(request, self.template_name, {"cartList": user_cart})
+        except ObjectDoesNotExist as e:
+            print(e)
+            return render(request, self.template_name, {"None": 1})
+
+class UpdateQuantityView(generic.edit.UpdateView):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            user = User.objects.get(id=request.user.id)
+            person = Person.objects.get(user_info=user)
+            customer = Customer.objects.get(person_info=person)
+            Cart.objects.filter(
+                customer_id=customer, product_id=int(request.POST['product_id'])
+            ).update(quantity=int(request.POST['quantity']))
+            return HttpResponse("okay")
+        except Exception as e:
+            print(e)
+            return HttpResponse("failed")
 
 
-class CheckOutView(View):
+class CheckOutView(View):   
     
     def post(self, request, *args, **kwargs):
         if request.POST['result']:
@@ -99,9 +112,14 @@ class DeleteItemCart(View):
 
     def post(self, request, *args, **kwargs):
         try:
-            product_id = request.POST['product_id']
-            customer_id = request.user.id
-            Cart.objects.filter(product_id=product_id, customer_id=customer_id).delete()
-        except ObjectDoesNotExist as e:
+            user = User.objects.get(id=request.user.id)
+            person = Person.objects.get(user_info=user)
+            customer = Customer.objects.get(person_info=person)
+            Cart.objects.filter(
+                customer_id=customer, product_id=int(request.POST['product_id'])
+            ).delete()
+            return HttpResponse("okay")
+        except Exception as e:
             print(e)
+            return HttpResponse("failed")
 
