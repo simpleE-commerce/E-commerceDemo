@@ -132,87 +132,57 @@
 		{% block body_content %}
 			<!-- shop locator (popup) -->
 			<!-- //header-bottom -->
-
-			<!-- banner -->
-			<div class="container banner-height">
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					<!-- Indicators-->
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="carousel-item item1 active">
-							<div class="container">
-								<div class="w3l-space-banner">
-									<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-										<p>Get flat
-											<span>10%</span> Cashback</p>
-										<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
-											<span>Big</span>
-											Sale
-										</h3>
-										<a class="button2" href="product.html">Shop Now </a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="carousel-item item2">
-							<div class="container">
-								<div class="w3l-space-banner">
-									<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-										<p>advanced
-											<span>Wireless</span> earbuds</p>
-										<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
-											<span>Headphone</span>
-										</h3>
-										<a class="button2" href="product.html">Shop Now </a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="carousel-item item3">
-							<div class="container">
-								<div class="w3l-space-banner">
-									<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-										<p>Get flat
-											<span>10%</span> Cashback</p>
-										<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">New
-											<span>Standard</span>
-										</h3>
-										<a class="button2" href="product.html">Shop Now </a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="carousel-item item4">
-							<div class="container">
-								<div class="w3l-space-banner">
-									<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-										<p>Get Now
-											<span>40%</span> Discount</p>
-										<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Today
-											<span>Discount</span>
-										</h3>
-										<a class="button2" href="product.html">Shop Now </a>
-									</div>
-								</div>
-							</div>
-						</div>
+			<div class="row">
+				<div class="slider-container slideshow-container">
+					<div class="main-slider">
+						<img class="slider-img active form-style" src="{% static 'core/images/1.jpg' %}">
+						<img class="slider-img form-style" src="{% static 'core/images/2.jpg' %}">
+						<img class="slider-img form-style" src="{% static 'core/images/ab.jpg' %}">
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
+					<nav class="slider-nav">
+					<ul>
+						<li class="arrow">
+						<button class="previous slider-btn" style="border: none; outline: none;">
+							<span>
+							<i class="ion-arrow-left-c"></i>
+							</span>
+						</button>
+						</li>
+						<li class="arrow">
+						<button class="next slider-btn" style="border: none; outline: none;">
+							<span>
+							<i class="ion-arrow-right-c"></i>
+							</span>
+						</button>
+						</li>
+					</ul>
+					</nav>
+					<div style="text-align:center; margin-right: 5rem;">
+						<span class="dot active"></span> 
+						<span class="dot"></span> 
+						<span class="dot"></span> 
+					</div>
+				</div>
+				
+				<div class="col-sm row mt-5" style="margin-right: 0px;">
+					<div class="col-md-6">
+						<img src="{% static 'core/images/free-shipping.png' %}" style="width: 50%;">
+						<span style="float: left; margin-top: 15px;">Express delivery</span>
+					</div>
+					<div class="col-md-6">
+						<img src="{% static 'core/images/7-days.png' %}" style="width: 50%;">
+						<span style="float: left; margin-top: 15px;">24 hour support</span>
+					</div>
+					<div class="col-md-6" style="margin-top: -3rem;">
+						<img src="{% static 'core/images/sticker.png' %}" style="width: 50%;">
+						<span style="display: flex; margin-top: 15px;">Orginal items</span>
+					</div>
+					<div class="col-md-6" style="margin-top: -3rem;">
+						<img src="{% static 'core/images/simple-data-format.png' %}" style="width: 50%;">
+						<span style="float: left;margin-top: 15px;">Simple for everyone to use</span>
+					</div>
 				</div>
 			</div>
-			<!-- //banner -->
 			<!-- top Products -->
 			<div class="ads-grid py-sm-5 py-4">
 				<div class="container py-xl-4 py-lg-2 grey-box-shadow">		
@@ -303,7 +273,7 @@
 	<!-- //nav smooth scroll -->
 
 	<!-- popup modal (for location)-->
-	<script src="{% static 'core/js/jquery.magnific-popup.js' %}"></script>
+	<!-- <script src="{% static 'core/js/jquery.magnific-popup.js' %}"></script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -319,7 +289,7 @@
 			});
 
 		});
-	</script>
+	</script> -->
 	<!-- //popup modal (for location)-->
 
 	<!-- cart-js -->
@@ -410,6 +380,9 @@
 
 	<!-- for bootstrap working -->
 	<script src="{% static 'core/js/bootstrap.js' %}"></script>
+	
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 	<script src="{% static 'core/js/index.js' %}"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
