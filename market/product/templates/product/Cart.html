@@ -25,7 +25,7 @@
 			<h4 class="mb-sm-4 mb-3">Your shopping cart contains:
 				<span>{{ cartList|length }} Products</span>
 			</h4>
-		   <section id="cart">
+		   <section id="cart" class="cart-section">
 			{% for item in cartList %}
 			  <article class="product">
 				<input type="hidden" value="{{ item.product_id.id }}" class="product_id" />
@@ -46,33 +46,38 @@
 					<span class="qt">{{ item.quantity }}</span>
 					<span class="qt-plus">+</span>
 					<h2 class="full-price">
-						{{ item.price }}$
+						{% widthratio item.quantity 1 item.price %}
 					</h2>
 					<h2 class="price">
-						{{ item.price }}
+						{{ item.price }}$
 					</h2>
 				 </footer>
 			  </article>
 			  {% endfor %}
 		   </section>
+		   <footer id="site-footer">
+			<div class="container clearfix">
+			   <div class="left">
+				  <h2 class="subtotal">Subtotal: <span>163.96</span>$</h2>
+				  <h3 class="tax">Taxes (5%): <span>8.2</span>$</h3>
+				  <h3 class="shipping">Shipping: <span>5.00</span>$</h3>
+			   </div>
+ 
+				 <div class="container-login100-form-btn p-t-31 right">
+					<h1 class="total">Total: <span>177.16</span>$</h1>
+					<div class="wrap-login100-form-btn btnContainer">
+						<div class="login100-form-bgbtn"></div>
+						<button class="btn login100-form-btn add payment">
+							<i class="fa fa-credit-card" style="color: white"></i>
+							Payment
+						</button>
+					</div>
+				 </div>
+			</div>
+			</footer>
 		</div>
-		<footer id="site-footer">
-		   <div class="container clearfix">
-			  <div class="left">
-				 <h2 class="subtotal">Subtotal: <span>163.96</span>$</h2>
-				 <h3 class="tax">Taxes (5%): <span>8.2</span>$</h3>
-				 <h3 class="shipping">Shipping: <span>5.00</span>$</h3>
-			  </div>
-			  <div class="right">
-				 <h1 class="total">Total: <span>177.16</span>$</h1>
-				 <a class="btn">Checkout</a>
-			  </div>
-		   </div>
-		</footer>
-		<!-- AD TO FILE --------->
-		
-		<!-- CART SHOP CODE END  -->   
-	 </div>
+ 
+	</div>
 	 <!-- END CLASS ROW -->
 
 {% endblock %}
@@ -101,10 +106,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"
     ></script> -->
-
-
-
-
+	
 	<!-- js-files -->
 	<!-- jquery -->
 	<script src="{% static 'core/js/jquery-2.2.3.min.js' %}"></script>
@@ -213,12 +215,29 @@
 		
 		window.setTimeout(function () {$(".is-open").removeClass("is-open");}, 1200);
 		
-		$(".btn").click(function () {
+		$(".payment").click(function () {
 		check = true;
+		var product_ids = [];
+		$(".cart-section").find(".product_id").each(function() { 
+			var id = $(this).val();
+			product_ids.push(id);
+		});
+		$.ajax({
+				type: "POST",
+				url: "/cart/payment/",
+				data: {
+						'product_id': product_ids,
+						'csrfmiddlewaretoken': '{{csrf_token}}',
+					},
+				});
 		$(".remove").click();
 		});
 		});
-		//# sourceURL=pen.js
+		
+		
+		
+		document.addEventListener("DOMContentLoaded", changeTotal());
+		document.addEventListener("DOMContentLoaded", changeVal());
 	 </script>
 	<!-- nav smooth scroll -->
 	<script>

@@ -1299,7 +1299,7 @@ h2.footer-top-head-w3l {
     height: 64px;
     border: none;
     text-indent: 100%;
-    background: url("../images/move-up.png") no-repeat 0px 0px;
+    background: url("../images/move.png") no-repeat 0px 0px;
 }
 
 #toTopHover {
@@ -1318,7 +1318,7 @@ h2.footer-top-head-w3l {
 /*-- inner pages --*/
 
 .page-head_agile_info_w3l {
-    background: url(../images/b1.jpg) no-repeat center;
+    background: url(../images/1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -1328,7 +1328,7 @@ h2.footer-top-head-w3l {
 }
 
 .page-head_agile_info_w3l-2 {
-    background: url(../images/b3.jpg) no-repeat center;
+    background: url(../images/2.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;

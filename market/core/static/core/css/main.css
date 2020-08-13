@@ -34,8 +34,13 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+  font-family: Poppins-Regular, sans-serif;
+  background-color: #bababa;
+  background-image: url("../images/memphis-colorful.png");
+
 }
+
+
 
 /*---------------------------------------------*/
 a {

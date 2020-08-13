@@ -4,8 +4,8 @@ from core.models import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 
+
 class AddCartView(generic.ListView):
-    template_name = 'product/checkout.html'
     model = Cart
 
     def post(self, request, *args, **kwargs):
@@ -26,10 +26,11 @@ class AddCartView(generic.ListView):
             cart_list = []
             for item in user_cart:
                 cart_list.append(item.product_id)
-            # return render(request, self.template_name, {"cartList": cart_list})
             return redirect('/cart/', request)
-        except ObjectDoesNotExist as e:
-            return render(request, self.template_name, {"None": 1})
+        except (ObjectDoesNotExist, Exception) as e:
+            if not request.user.is_authenticated:
+                print("not auth")
+                return redirect('/login/')
 
 
 class CartView(generic.ListView):
@@ -78,37 +79,49 @@ class UpdateQuantityView(generic.edit.UpdateView):
             return HttpResponse("failed")
 
 
-class CheckOutView(View):   
+class CheckOutView(generic.edit.CreateView):   
     
     def post(self, request, *args, **kwargs):
-        if request.POST['result']:
-            customer_id = request.user.id
-            total_price = 00.2
-            discount_amount = ''
-            order = Orders(customer_id=customer_id, 
-                           seller_id=request.POST['seller_id'],
+        try:
+            product_list = [int(x) for x in request.POST.getlist("product_id[]")]
+            user = User.objects.get(id=request.user.id)
+            person = Person.objects.get(user_info=user)
+            customer = Customer.objects.get(person_info=person)
+            total_price = 0
+            discount_amount = 0
+            for ids in product_list:
+                total_price += Product.objects.get(id=ids).price
+            seller = Seller.objects.get(
+                seller_info=Person.objects.get(
+                    user_info=User.objects.get(username='admin')
+                )
+            )
+            order = Orders(customer_id=customer, 
+                           seller_id=seller,
                            total_price=total_price,
                            discount_amount=discount_amount)
             order.save()
-            product_price = Product.objects.get(id=request.POST['product_id']).price
-            order_list = OrderList(order_id=order.id,
-                                   product_id=request.POST['product_id'],
-                                   price=product_price,
-                                   quantity=request.POST['quantity'])
-            order_list.save()
-            if total_price - discount_amount == request.POST['amount']:
-                payment = Payments(order_id=order.id,
-                                    amount=request.POST['amount'],
-                                    status=2)
-            else:
-                payment = Payments(order_id=order.id,
-                                    amount=request.POST['amount'],
-                                    status=2)
+            for ids in product_list:
+                item = Product.objects.get(id=ids)
+                quantity = Cart.objects.get(customer_id=customer, product_id=item).quantity
+                order_list = OrderList(order_id=order,
+                                        product_id=item,
+                                        price=item.price,
+                                        quantity=quantity)
+                order_list.save()
+
+            payment = Payments(order_id=order,
+                                amount=total_price,
+                                status=2)
             payment.save()
-            Cart.objects.filter(customer_id=customer_id).delete()
+            Cart.objects.filter(customer_id=customer).delete()
+            return HttpResponse("Okay")
+        except Exception as e:
+            print(e)
+            return HttpResponse("Failed")
 
 
-class DeleteItemCart(View):
+class DeleteItemCart(generic.edit.DeleteView):
 
     def post(self, request, *args, **kwargs):
         try:

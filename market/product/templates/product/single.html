@@ -3,13 +3,14 @@
 {% block body_content %}
 
 	<!-- page -->
-	<div class="services-breadcrumb">
+	<div class="services-breadcrumb grey-box-shadow">
 		<div class="agile_inner_breadcrumb">
 			<div class="container">
 				<ul class="w3_short">
 					<li>
 						<a href="{% url 'core:index' %}">Home</a>
 						<i>|</i>
+						<a>{{product.product_name}}</a>
 					</li>
 				</ul>
 			</div>
@@ -20,11 +21,6 @@
 	<!-- Single Page -->
 	<div class="banner-bootom-w3-agileits py-5">
 		<div class="container py-xl-4 py-lg-2">
-			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>S</span>ingle
-				<span>P</span>age</h3>
-			<!-- //tittle heading -->
 			<div class="row">
 				<div class="col-lg-5 col-md-8 single-right-left ">
 					<div class="grid images_3_of_2">
@@ -46,7 +42,7 @@
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
 					<h3 class="mb-3">{{ product.product_name }}</h3>
 					<p class="mb-3">
-						<span class="item_price">{{ product.price }}</span>
+						<span class="item_price">{{ product.price }}$</span>
 						<!-- <del class="mx-2 font-weight-light">$280.00</del> -->
 						<!-- <label>Free delivery</label> -->
 					</p>
@@ -79,26 +75,35 @@
 							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
 						</p>
 					</div>
-					<div class="occasion-cart">
+					<!-- <div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 							<form action="/cart/addcart/" method="post">
 								{% csrf_token %}
 								<fieldset>
-									<input type="hidden" name="cmd" value="_cart" />
 									<input type="hidden" name="quantity" value="1" />
 									<input type="hidden" name="product_id" value="{{ product.id }}" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="Samsung Galaxy J7 Prime" />
-									<input type="hidden" name="amount" value="200.00" />
-									<input type="hidden" name="discount_amount" value="1.00" />
-									<input type="hidden" name="currency_code" value="USD" />
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
 									<input type="submit" name="submit" value="Add to cart" class="button" />
 								</fieldset>
 							</form>
 						</div>
-					</div>
+					</div> -->
+					<form action="/cart/addcart/" method="post">
+						{% csrf_token %}
+						<div class="container-login100-form-btn p-t-31">
+                        <div class="wrap-login100-form-btn btnContainer">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn btn add">
+								<i class="fas fa-cart-arrow-down" style="color: white"></i>
+								add to cart
+									<fieldset>
+										<input type="hidden" name="quantity" value="1" />
+										<input type="hidden" name="product_id" value="{{ product.id }}" />
+										<!-- <input type="hidden" name="submit" value="" class="button" /> -->
+									</fieldset>
+                            </button>
+                        </div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

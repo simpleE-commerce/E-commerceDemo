@@ -11,6 +11,7 @@ body {
     font-size: 100%;
     background: #fff;
     font-family: 'Open Sans', sans-serif;
+    background-image: url("../images/memphis-colorful.png");
 }
 
 body a {
@@ -321,7 +322,7 @@ ul.multi-column-dropdown li a:hover {
 /*-- carousel-slider --*/
 
 .carousel-item.item1 {
-    background: url(../images/b1.jpg) no-repeat center;
+    background: url(../images/1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -330,7 +331,7 @@ ul.multi-column-dropdown li a:hover {
 }
 
 .carousel-item.item2 {
-    background: url(../images/b2.jpg) no-repeat center;
+    background: url(../images/2.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -339,7 +340,7 @@ ul.multi-column-dropdown li a:hover {
 }
 
 .carousel-item.item3 {
-    background: url(../images/b3.jpg) no-repeat center;
+    background: url(../images/1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -348,7 +349,7 @@ ul.multi-column-dropdown li a:hover {
 }
 
 .carousel-item.item4 {
-    background: url(../images/b4.jpg) no-repeat center;
+    background: url(../images/2.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1286,7 +1287,7 @@ h2.footer-top-head-w3l {
 /*-- bottom-to-top --*/
 
 #toTop {
-    display: none;
+    /* display: none; */
     text-decoration: none;
     position: fixed;
     bottom: 24px;
@@ -1297,7 +1298,8 @@ h2.footer-top-head-w3l {
     height: 64px;
     border: none;
     text-indent: 100%;
-    background: url("../images/move-up.png") no-repeat 0px 0px;
+    background: url("../images/move.png") no-repeat 10px 10px;
+    background-size: 50px 50px;
 }
 
 #toTopHover {
@@ -1316,7 +1318,7 @@ h2.footer-top-head-w3l {
 /*-- inner pages --*/
 
 .page-head_agile_info_w3l {
-    background: url(../images/b1.jpg) no-repeat center;
+    background: url(../images/1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -1326,7 +1328,7 @@ h2.footer-top-head-w3l {
 }
 
 .page-head_agile_info_w3l-2 {
-    background: url(../images/b3.jpg) no-repeat center;
+    background: url(../images/2.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
