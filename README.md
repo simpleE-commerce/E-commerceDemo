@@ -1,4 +1,4 @@
-This is demo of our suggesting store market. This is the implementation of specific parts of our analysis based on RUP software development methodology. In the following the instruction for running codes is given.
+This is the demo of our suggesting store market. This is the implementation of specific parts of our analysis based on RUP software development methodology. In the following the instruction for running codes is given.
 
 # Requirements
 This demo is done via using python3.7, django2.2 and we assume we are using Ubuntu18.04.. First we create a virtual environment.
