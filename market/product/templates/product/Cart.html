@@ -25,60 +25,61 @@
 			
 			<h4 class="mb-sm-4 mb-3" id="cartNumber" style="margin-top: 2rem; color: #a64bf4;">
 				Your shopping cart contains:
-				<span>{{ cartList|length }} Item(s)</span>
+				<span>{{ cartList|length }}</span>
+				Item(s)
 			</h4>
-		   <section id="cart" class="cart-section">
-			{% for item in cartList %}
-			  <article class="product">
-				<input type="hidden" value="{{ item.product_id.id }}" class="product_id" />
-				 <header>
-					<a id="remove-item" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">
-					   <img src="{{ item.product_id.cover_image.url }}" alt="">
-					   <h3>Remove product</h3>
-					</a>
-					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Remove item</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								</div>
-								<div class="modal-body">
-									<div class="alert alert-danger" role="alert">
-										Are you sure you want to delete this item?
+			<section id="cart" class="cart-section">
+				{% for item in cartList %}
+				<article class="product">
+					<input type="hidden" value="{{ item.product_id.id }}" class="product_id" />
+					<header>
+						<a id="remove-item" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">
+						<img src="{{ item.product_id.cover_image.url }}" alt="">
+						<h3>Remove product</h3>
+						</a>
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Remove item</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-danger" id='confirmDelete' style="line-height: 1.8;">Delete</button>
+									<div class="modal-body">
+										<div class="alert alert-danger" role="alert">
+											Are you sure you want to delete this item?
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-danger" id='confirmDelete' style="line-height: 1.8;">Delete</button>
+									</div>
 								</div>
 							</div>
 						</div>
+					</header>
+					
+					<div class="content">
+						<h1><a href="{% url 'product:product_detail-page' item.product_id.id %}">
+							{{ item.product_id.product_name }}
+						</a></h1>
 					</div>
-				 </header>
-				 
-				 <div class="content">
-					<h1><a href="{% url 'product:product_detail-page' item.product_id.id %}">
-						{{ item.product_id.product_name }}
-					</a></h1>
-				 </div>
-				 <footer class="content">
-					<span class="qt-minus">-</span>
-					<span class="qt">{{ item.quantity }}</span>
-					<span class="qt-plus">+</span>
-					<h2 class="full-price">
-						{% widthratio item.quantity 1 item.price %}
-					</h2>
-					<h2 class="price">
-						{{ item.price }}$
-					</h2>
-				 </footer>
-			  </article>
-			  {% endfor %}
-		   </section>
-		   <footer id="site-footer">
+					<footer class="content">
+						<span class="qt-minus">-</span>
+						<span class="qt">{{ item.quantity }}</span>
+						<span class="qt-plus">+</span>
+						<h2 class="full-price">
+							{% widthratio item.quantity 1 item.price %}
+						</h2>
+						<h2 class="price">
+							{{ item.price }}$
+						</h2>
+					</footer>
+				</article>
+				{% endfor %}
+			</section>
+		   	<footer id="site-footer">
 			<div class="container clearfix">
 			   <div class="left">
 				  <h2 class="subtotal">Subtotal: <span>163.96</span>$</h2>
@@ -189,6 +190,9 @@
 					$("#cart").html("<h1>No products!</h1>");
 					$("#cartNumber").text("Your shopping cart contains: 0 Item(s)");
 				}
+				else {
+					$("#cartNumber span").text(parseInt($("#cartNumber span").text()) - 1 );
+				}
 				changeTotal();
 			  });
 			}, 200);
@@ -260,7 +264,21 @@
 						'csrfmiddlewaretoken': '{{csrf_token}}',
 					},
 				});
-		$(".remove").click();
+					
+		var el = $("#site-footer");
+		el.parent().children(".cart-section").children(".product").addClass(" removed");
+		window.setTimeout(
+		function () {
+			el.parent().children(".cart-section").children(".product").slideUp('fast', function () {
+			el.parent().children(".cart-section").children(".product").remove();
+			if ($(".product").length == 0) {
+				$("#cart").html("<h1>No products!</h1>");
+				$("#cartNumber").text("Your shopping cart contains: 0 Item(s)");
+			}
+			changeTotal();
+		});
+		}, 200);
+
 		});
 		});
 		

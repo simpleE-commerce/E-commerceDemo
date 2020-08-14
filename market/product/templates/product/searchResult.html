@@ -2,9 +2,25 @@
 {% load static %}
 {% block body_content %}
 
+	<!-- page -->
+	<div class="services-breadcrumb grey-box-shadow">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a href="{% url 'core:index' %}">Home</a>
+						<i>|</i>
+					</li>
+					<li>Search Result for '{{ request.GET.term }}'</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->
+
 	<!-- top Products -->
 	<div class="ads-grid py-sm-5 py-4">
-		<div class="container py-xl-4 py-lg-2">		
+		<div class="container py-xl-4 py-lg-2 grey-box-shadow">		
 			<div class="row">
 				<!-- product left -->
 				<div class="agileinfo-ads-display col-lg-9">
@@ -13,8 +29,8 @@
 						<div class="container">
 							<div class="row">
 								{% for product in products %}
-								<div class="col-sm">
-									<figure class="snip1492">
+								<div class="col-sm-4">
+									<figure class="snip1492 grey-box-shadow">
 										<img src="{{ product.cover_image.url }}" alt="sample60" />
 										<figcaption>
 											<h3>{{ product.product_name}}</h3>
