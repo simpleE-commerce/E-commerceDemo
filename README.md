@@ -5,7 +5,7 @@ This demo is done via using python3.7, django2.2 and we assume we are using Ubun
 ```
 virtualenv -p python3.7 venv
 ```
-* Note that in order to run the above command we need to have both virtualenv and python3.7 installed on out system. We assume we are using Ubuntu18.04.
+* Note that in order to run the above command we need to have both virtualenv and python3.7 installed on out system.
 
 Then we activate our virtual environment and install requirements.  
 ```
