@@ -6,6 +6,7 @@ let count = 0;
 var slideIndex = 0;
 
 
+
 function showNextItem() {
   items[count].classList.remove('active');
 
@@ -18,10 +19,11 @@ function showNextItem() {
   }
 
   items[count].classList.add('active');
-//   console.log(count);
 
   showSlides();
+
 }
+
 
 function showPreviousItem() {
   items[count].classList.remove('active');
@@ -68,6 +70,6 @@ function showSlides() {
   }
 //   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex].className += " active";
-//   setTimeout(showSlides, 2000); // Change image every 2 seconds
+  // setTimeout(showSlides, 2000); // Change image every 2 seconds
 console.log(slideIndex);
 }

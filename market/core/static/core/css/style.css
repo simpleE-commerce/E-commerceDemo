@@ -106,16 +106,6 @@ label {
     font-size: 15px;
 }
 
-/*-- modal login --*/
-
-.modal-title {
-    font-size: 30px;
-    color: #0879c9;
-}
-
-.modal-content {
-    border: 10px solid rgba(244, 92, 93, 0.82);
-}
 
 label.col-form-label {
     letter-spacing: 1px;
@@ -125,32 +115,6 @@ label.col-form-label {
 
 p.dont-do a {
     color: #F45C5D;
-}
-
-.modal-footer .btn-primary,
-.modal-footer .btn-secondary {
-    font-size: 15px;
-    letter-spacing: 1px;
-    padding: 10px 14px;
-}
-
-.modal-footer .btn-primary {
-    background-color: #0e0e0e;
-    border-color: #0e0e0e;
-    -webkit-transition: 0.5s all;
-    -o-transition: 0.5s all;
-    -moz-transition: 0.5s all;
-    -ms-transition: 0.5s all;
-    transition: 0.5s all;
-}
-
-.modal-footer .btn-primary:hover {
-    opacity: .8;
-    -webkit-transition: 0.5s all;
-    -o-transition: 0.5s all;
-    -moz-transition: 0.5s all;
-    -ms-transition: 0.5s all;
-    transition: 0.5s all;
 }
 
 .right-w3l input[type="submit"] {

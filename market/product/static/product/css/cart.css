@@ -143,8 +143,7 @@ a:hover {
 }
 
 .product header h3 {
-	background: #53b5aa;
-	color: #fff;
+	color: red;
 	font-size: 22px;
 	font-weight: 300;
 	line-height: 49px;
@@ -162,9 +161,6 @@ a:hover {
 	transition: bottom .2s linear;
 }
 
-.remove {
-	cursor: pointer;
-}
 
 .product .content {
 	box-sizing: border-box;
@@ -357,3 +353,11 @@ a:hover {
 .added {
 	margin: 0 -50px 0 0 !important;
 }
+
+.modal-content {
+	border: none !important;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px 5px #eb4034;
+}
+
+
