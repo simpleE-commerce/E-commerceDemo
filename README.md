@@ -1,6 +1,6 @@
 This is demo of our suggesting store market. This is the implementation of specific parts of our analysis based on RUP software development methodology. In the following the instruction for running codes is given.
 
-#Requirements
+# Requirements
 This demo is done via using python3.7, django2.2 and we assume we are using Ubuntu18.04.. First we create a virtual environment.
 ```
 virtualenv -p python3.7 venv
@@ -42,5 +42,5 @@ To run the project
 python manage.py runserver
 ```
 
-background from https://www.toptal.com/designers/subtlepatterns/
-icons from flaticon and fontawesome
+### Icons and images
+Most of the images for background and icons are used from [toptal](https://www.toptal.com/designers/subtlepatterns/), [flaticon](https://www.flaticon.com/) and fontawesome.
