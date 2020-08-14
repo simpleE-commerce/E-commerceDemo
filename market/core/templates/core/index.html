@@ -18,13 +18,35 @@
 			crossorigin="anonymous"
 		> -->
 		<!-- FontAwesome icons -->
-		<script src="https://use.fontawesome.com/e8f4dc5178.js"></script>
-		<link rel="stylesheet" href="{% static 'product/css/search-result.css' %}">
+		
 
 		{% block css_links %}
-	<!-- {#        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> #} -->
-	
+			<script src="https://use.fontawesome.com/e8f4dc5178.js"></script>
+			<link rel="stylesheet" href="{% static 'product/css/search-result.css' %}">
+			
+			<!-- Custom-Files -->
+			<link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+			
+			<link rel="stylesheet" href="{% static 'core/css/main.css' %}"> 
+			
+			<link href="{% static 'core/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+			<link rel="stylesheet" href="{% static 'core/css/fontawesome-all.css' %}">
+
+			<link href="{% static 'core/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+			<link href="{% static 'core/css/menu.css' %}" rel="stylesheet" type="text/css" media="all" />
+			<!-- //Custom-Files -->
+
+			<!-- web fonts -->
+			<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+			<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+				rel="stylesheet">
+			<!-- //web fonts -->
+			<link href="{% static 'core/css/index.css' %}" rel="stylesheet" type="text/css" media="all"></link>
+		
 		{% endblock %}
+
 	<title>{% block title %}Store{% endblock %}</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -41,26 +63,6 @@
 	</script>
 	<!-- //Meta tag Keywords -->
 
-	<!-- Custom-Files -->
-	<link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
-	<!-- Bootstrap css -->
-	<link href="{% static 'core/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
-	<!-- Main css -->
-	<link rel="stylesheet" href="{% static 'core/css/fontawesome-all.css' %}">
-	<!-- Font-Awesome-Icons-CSS -->
-	<link href="{% static 'core/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
-	<!-- pop-up-box -->
-	<link href="{% static 'core/css/menu.css' %}" rel="stylesheet" type="text/css" media="all" />
-	<!-- menu style -->
-	<!-- //Custom-Files -->
-
-	<!-- web fonts -->
-	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-	    rel="stylesheet">
-	<!-- //web fonts -->
-	<link href="{% static 'core/css/index.css' %}" rel="stylesheet" type="text/css" media="all"></link>
-	<!-- <link rel="stylesheet" href="{% static 'core/css/main.css' %}"> -->
 </head>
 
 {% block internal_css %}
@@ -272,50 +274,6 @@
 	</script>
 	<!-- //nav smooth scroll -->
 
-	<!-- popup modal (for location)-->
-	<!-- <script src="{% static 'core/js/jquery.magnific-popup.js' %}"></script>
-	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
-	</script> -->
-	<!-- //popup modal (for location)-->
-
-	<!-- cart-js -->
-	<script src="{% static 'core/js/minicart.js' %}"></script>
-	<script>
-		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
-
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	<!-- //cart-js -->
-
 	<!-- password-script -->
 	<!-- <script>
 		window.onload = function () {
@@ -381,7 +339,6 @@
 	<!-- for bootstrap working -->
 	<script src="{% static 'core/js/bootstrap.js' %}"></script>
 	
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 	<script src="{% static 'core/js/index.js' %}"></script>
 	<!-- //for bootstrap working -->

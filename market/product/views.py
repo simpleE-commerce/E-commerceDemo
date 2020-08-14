@@ -30,17 +30,3 @@ class ProductDetailClassView(generic.DetailView):
         context['description'] = ProductDetails.objects.filter(product_id=kwargs['object'].id)
         return context
 
-# class CheckoutListView(generic.ListView):
-#     template_name = 'product/checkout.html'
-#     model = Cart
-
-#     def post(self, request, *args, **kwargs):
-#         try:
-#             user = User.objects.get(id=request.user.id)
-#             person = Person.objects.get(user_info=user)
-#             customer = Customer.objects.get(person_info=person)
-#             user_cart = Cart.objects.filter(customer_id=customer)
-#             return render(request, self.template_name, {"cartList": user_cart})
-#         except ObjectDoesNotExist as e:
-#             print(e)
-#             return render(request, self.template_name, {"None": 1})
