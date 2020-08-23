@@ -42,5 +42,6 @@ To run the project
 python manage.py runserver
 ```
 
-### Icons and images
+##
+
 Most of the images for background and icons are used from [toptal](https://www.toptal.com/designers/subtlepatterns/), [flaticon](https://www.flaticon.com/) and fontawesome.
